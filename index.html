@@ -1,1 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Speed Connect - Internet de Alta Velocidade</title>
+    
+    <!-- Bootstrap 5 CSS + Icons + Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background-color: #f8fafc;
+        }
+
+        /* Paleta de cores personalizada */
+        :root {
+            --primary-blue: #0b2b5c;
+            --primary-teal: #1e7e84;
+            --accent-orange: #f39c12;
+            --light-bg: #f4f7fc;
+            --dark-text: #1e2a41;
+            --gray-mid: #5a6e8a;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #0b2b5c 0%, #123e6e 100%);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            padding: 0.8rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+            color: white !important;
+        }
+
+        .navbar-brand span {
+            color: var(--accent-orange);
+        }
+
+        .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-orange) !important;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(120deg, #eef2f9 0%, #ffffff 100%);
+            padding: 100px 0 80px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .hero h1 {
+            font-weight: 800;
+            font-size: 3.2rem;
+            color: var(--primary-blue);
+            line-height: 1.2;
+        }
+
+        .hero .highlight {
+            color: var(--primary-teal);
+            border-left: 4px solid var(--accent-orange);
+            padding-left: 15px;
+        }
+
+        .btn-primary-custom {
+            background: var(--primary-teal);
+            border: none;
+            padding: 12px 32px;
+            font-weight: 600;
+            border-radius: 40px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary-custom:hover {
+            background: #16686e;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+        }
+
+        .btn-outline-custom {
+            border: 2px solid var(--primary-teal);
+            color: var(--primary-teal);
+            border-radius: 40px;
+            padding: 10px 28px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-outline-custom:hover {
+            background: var(--primary-teal);
+            color: white;
+        }
+
+        /* Cards / planos */
+        .card-plano {
+            border: none;
+            border-radius: 28px;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .card-plano:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 40px rgba(0,0,0,0.12);
+        }
+
+        .card-plano .card-header {
+            background: var(--primary-blue);
+            color: white;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            padding: 1rem;
+            border-bottom: 3px solid var(--accent-orange);
+        }
+
+        .preco {
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: var(--primary-teal);
+        }
+
+        .feature-icon {
+            font-size: 2.2rem;
+            color: var(--primary-teal);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-weight: 800;
+            color: var(--primary-blue);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: var(--accent-orange);
+            border-radius: 2px;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.8rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+            transition: 0.2s;
+            border: 1px solid #e9edf2;
+            height: 100%;
+        }
+
+        .info-card i {
+            font-size: 2.2rem;
+            color: var(--primary-teal);
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: #0b2b5c;
+            color: #cddfe7;
+            padding-top: 3rem;
+            padding-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: #cddfe7;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-orange);
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            margin: 0 5px;
+            transition: 0.3s;
+            color: white;
+        }
+
+        .social-icons a:hover {
+            background: var(--accent-orange);
+            transform: translateY(-3px);
+        }
+
+        .badge-cnpj {
+            background: #eef2ff;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero {
+                padding: 60px 0 40px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navegação -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Speed <span>Connect</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#home">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#planos">Planos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#diferenciais">Diferenciais</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+                </ul>
+                <a href="#contato" class="btn btn-outline-light ms-lg-3 rounded-pill px-4">Assine Já</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="mb-3">
+                        <span class="badge-cnpj"><i class="fas fa-check-circle me-1"></i> Ativa desde 2008</span>
+                    </div>
+                    <h1>Conectividade que <span class="highlight">leva você mais longe</span></h1>
+                    <p class="lead mt-3 text-secondary">Internet de alta performance, fibra óptica de verdade e suporte local em Imperatriz - MA. Mais de 15 anos transformando a experiência digital.</p>
+                    <div class="d-flex flex-wrap gap-3 mt-4">
+                        <a href="#planos" class="btn btn-primary-custom btn-lg"><i class="fas fa-rocket me-2"></i>Conheça os planos</a>
+                        <a href="#contato" class="btn btn-outline-custom btn-lg"><i class="fas fa-headset me-2"></i>Fale com a gente</a>
+                    </div>
+                    <div class="mt-4 d-flex flex-wrap gap-4">
+                        <div><i class="fas fa-tachometer-alt text-primary-teal me-1" style="color: #1e7e84;"></i> <strong>500+ Mbps</strong> de velocidade</div>
+                        <div><i class="fas fa-wifi text-primary-teal me-1" style="color: #1e7e84;"></i> <strong>Fibra óptica</strong> 100%</div>
+                        <div><i class="fas fa-clock text-primary-teal me-1" style="color: #1e7e84;"></i> <strong>Suporte 24h</strong> local</div>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="https://placehold.co/600x400/0b2b5c/white?text=Speed+Connect+FIBRA" class="img-fluid rounded-4 shadow-lg" alt="Internet Fibra Speed Connect" style="max-width: 90%;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Planos -->
+    <section id="planos" class="py-5 bg-light">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Planos sob medida para você</h2>
+                <p class="text-secondary">Escolha o melhor plano e tenha navegação sem limites, streaming e jogos com a máxima estabilidade.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-plano h-100">
+                        <div class="card-header">PLANO START</div>
+                        <div class="card-body p-4 text-center">
+                            <div class="feature-icon"><i class="fas fa-wifi"></i></div>
+                            <h3 class="preco">R$ 89,90 <span style="font-size: 1rem;">/mês</span></h3>
+                            <p class="text-muted">Perfeito para navegação e redes sociais</p>
+                            <ul class="list-unstyled mt-3">
+                                <li><i class="fas fa-check-circle text-success me-2"></i> 300 Mega de velocidade</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i> Wi-Fi 6 incluso</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i> Suporte remoto 24/7</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i> Instalação gratuita</li>
+                            </ul>
+                            <a href="#contato" class="btn btn-primary-custom w-100 mt-3">Assinar agora</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-plano h-100 border border-warning">
+                        <div class="card-header" style="background: #1e7e84;">PLANO ULTRA</div>
+                        <div class="card-body p-4 text-center">
+                            <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                            <h3 class="preco">R$ 129,90 <span style="font-size: 1rem;">/mês</span></h3>
+                            <p class="text-muted">Ideal para famílias e home office</p>
+                            <ul class="list-unstyled mt-3">
+                                <li><i class="fas fa-check-circle text-success me-2"></i> 500 Mega de velocidade</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i> Roteador Mesh (2 unidades)</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i> Suporte prioritário</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i> Instalação + Brinde Alexa</li>
+                            </ul>
+                            <a href="#contato" class="btn btn-primary-custom w-100 mt-3">Garantir oferta</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-plano h-100">
+                        <div class="card-header">PLANO GAMER PRO</div>
+                        <div class="card-body p-4 text-center">
+                            <div class="feature-icon"><i class="fas fa-gamepad"></i></div>
+                            <h3 class="preco">R$ 169,90 <span style="font-size: 1rem;">/mês</span></h3>
+                            <p class="text-muted">Latência baixa e conexão dedicada</p>
+                            <ul class="list-unstyled mt-3">
+                                <li><i class="fas fa-check-circle text-success me-2"></i> 1 Giga (1000 Mbps)</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i> Roteador Dual Band Gaming</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i> Estabilidade premium</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i> Suporte técnico exclusivo</li>
+                            </ul>
+                            <a href="#contato" class="btn btn-primary-custom w-100 mt-3">Quero jogar sem lag</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diferenciais e Qualidade -->
+    <section id="diferenciais" class="py-5">
+        <div class="container py-4">
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title">Por que ser Speed Connect?</h2>
+                    <p class="lead text-secondary">Mais de uma década conectando Imperatriz e região com tecnologia de ponta e atendimento humano.</p>
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="fas fa-trophy fs-1" style="color: #f39c12;"></i>
+                                <div><h5 class="fw-bold">15+ anos de mercado</h5><p class="text-muted small">Fundada em 2008, tradição e confiança.</p></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="fas fa-handshake fs-1" style="color: #1e7e84;"></i>
+                                <div><h5 class="fw-bold">Compromisso local</h5><p class="text-muted small">Equipe técnica em Imperatriz para suporte ágil.</p></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="fas fa-chart-line fs-1" style="color: #0b2b5c;"></i>
+                                <div><h5 class="fw-bold">Fibra óptica pura</h5><p class="text-muted small">Tecnologia FTTH com estabilidade e velocidade real.</p></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="fas fa-headset fs-1" style="color: #f39c12;"></i>
+                                <div><h5 class="fw-bold">Atendimento humanizado</h5><p class="text-muted small">Suporte 24h, sem robôs, apenas pessoas.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="info-card">
+                        <i class="fas fa-building"></i>
+                        <h4 class="fw-bold mt-2">Dados da Empresa</h4>
+                        <hr>
+                        <p><strong><i class="fas fa-id-card me-2"></i> Razão Social:</strong> Speed Connect - Tecnologia e Equipamentos LTDA</p>
+                        <p><strong><i class="fas fa-tag me-2"></i> Nome Fantasia:</strong> Speed Connect</p>
+                        <p><strong><i class="fas fa-chart-simple me-2"></i> CNPJ:</strong> 10.379.340/0001-29</p>
+                        <p><strong><i class="fas fa-calendar-alt me-2"></i> Situação Cadastral:</strong> Ativa desde 25/09/2008</p>
+                        <p><strong><i class="fas fa-map-marker-alt me-2"></i> Matriz:</strong> Av. Getulio Vargas, 858 - Centro, Imperatriz - MA, CEP: 65901-450</p>
+                        <p><strong><i class="fas fa-phone-alt me-2"></i> Central de Vendas:</strong> (99) 3524-3125</p>
+                        <div class="mt-3">
+                            <span class="badge bg-success bg-opacity-25 text-success p-2"><i class="fas fa-check-circle"></i> Empresa regular - CNPJ ativo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Frases e Depoimentos simulados / ícones motivacionais -->
+    <section class="py-5" style="background: linear-gradient(110deg, #eef3fc 0%, #ffffff 100%);">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <i class="fas fa-quote-left fa-3x" style="color: var(--accent-orange); opacity: 0.5;"></i>
+                    <h2 class="section-title mt-2">O que nossos clientes dizem</h2>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="info-card text-center h-100">
+                        <i class="fas fa-user-circle fa-3x"></i>
+                        <p class="mt-3 fst-italic">"Internet excelente, nunca cai e a velocidade é realmente a contratada. Atendimento super ágil da Speed Connect."</p>
+                        <h6 class="fw-bold mt-2">— Mariana L. (Imperatriz)</h6>
+                        <div class="text-warning"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-card text-center h-100">
+                        <i class="fas fa-laptop-code fa-3x"></i>
+                        <p class="mt-3 fst-italic">"Trabalho home office e preciso de estabilidade. Com a Speed Connect nunca tive problemas de conexão. Nota 10!"</p>
+                        <h6 class="fw-bold mt-2">— Carlos Mendes</h6>
+                        <div class="text-warning"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-card text-center h-100">
+                        <i class="fas fa-tv fa-3x"></i>
+                        <p class="mt-3 fst-italic">"Melhor provedor da região! Streaming 4K sem travamentos, plano familiar compensa demais. Recomendo!"</p>
+                        <h6 class="fw-bold mt-2">— Fernanda R.</h6>
+                        <div class="text-warning"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de contato e informações complementares -->
+    <section id="contato" class="py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-5">
+                    <h2 class="section-title">Fale com a Speed Connect</h2>
+                    <p class="text-secondary">Pronto para ter a melhor internet da sua região? Entre em contato e faça sua assinatura em poucos minutos.</p>
+                    <div class="mt-4">
+                        <div class="d-flex mb-3"><i class="fas fa-map-pin fs-4 me-3" style="color: var(--primary-teal);"></i><div><strong>Endereço físico:</strong><br> Av. Getulio Vargas, 858, Centro, Imperatriz - MA, 65901-450</div></div>
+                        <div class="d-flex mb-3"><i class="fas fa-phone-alt fs-4 me-3" style="color: var(--primary-teal);"></i><div><strong>Telefone / WhatsApp:</strong><br> (99) 3524-3125</div></div>
+                        <div class="d-flex mb-3"><i class="fas fa-envelope fs-4 me-3" style="color: var(--primary-teal);"></i><div><strong>E-mail:</strong><br> contato@speedconnect.com.br</div></div>
+                        <div class="d-flex mb-3"><i class="fas fa-clock fs-4 me-3" style="color: var(--primary-teal);"></i><div><strong>Atendimento:</strong><br> Segunda a Sexta: 8h às 20h | Sábado: 9h às 14h</div></div>
+                    </div>
+                    <div class="social-icons mt-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="info-card">
+                        <h4><i class="fas fa-paper-plane me-2"></i> Solicite sua conexão</h4>
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Nome completo</label>
+                                    <input type="text" class="form-control" placeholder="Seu nome">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Telefone / WhatsApp</label>
+                                    <input type="tel" class="form-control" placeholder="(99) 99999-9999">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">E-mail</label>
+                                    <input type="email" class="form-control" placeholder="contato@exemplo.com">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Escolha seu plano</label>
+                                    <select class="form-select">
+                                        <option>Plano START 300 Mega - R$ 89,90/mês</option>
+                                        <option>Plano ULTRA 500 Mega - R$ 129,90/mês</option>
+                                        <option>Plano GAMER PRO 1 Giga - R$ 169,90/mês</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Mensagem / observações</label>
+                                    <textarea class="form-control" rows="3" placeholder="Digite seu endereço ou dúvidas..."></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary-custom w-100 py-2">Enviar solicitação <i class="fas fa-arrow-right ms-2"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <p class="small text-muted mt-3"><i class="fas fa-lock"></i> Seus dados estão seguros. Entraremos em contato rapidamente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-md-4">
+                    <h4 class="fw-bold text-white">Speed <span style="color: #f39c12;">Connect</span></h4>
+                    <p>Internet de qualidade, compromisso e tecnologia para Imperatriz e região. Conectando você ao mundo com fibra óptica.</p>
+                </div>
+                <div class="col-md-4 footer-links">
+                    <h5 class="text-white">Links úteis</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home"><i class="fas fa-chevron-right me-2"></i>Início</a></li>
+                        <li><a href="#planos"><i class="fas fa-chevron-right me-2"></i>Planos e preços</a></li>
+                        <li><a href="#diferenciais"><i class="fas fa-chevron-right me-2"></i>Sobre a empresa</a></li>
+                        <li><a href="#contato"><i class="fas fa-chevron-right me-2"></i>Fale conosco</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-white">Dados cadastrais</h5>
+                    <p class="mb-1"><i class="fas fa-cnpj"></i> CNPJ: 10.379.340/0001-29</p>
+                    <p class="mb-1"><i class="fas fa-calendar"></i> Fundação: 25/09/2008</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Av. Getulio Vargas, 858 - Centro, Imperatriz-MA</p>
+                </div>
+            </div>
+            <hr class="mt-4 opacity-25">
+            <div class="text-center pt-2">
+                <p class="mb-0">&copy; 2025 Speed Connect - Tecnologia e Equipamentos LTDA. Todos os direitos reservados.</p>
+                <small>Uma empresa comprometida com a excelência em conectividade.</small>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
